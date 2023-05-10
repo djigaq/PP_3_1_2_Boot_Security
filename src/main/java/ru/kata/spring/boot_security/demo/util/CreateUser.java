@@ -1,4 +1,4 @@
-package ru.kata.spring.boot_security.demo.Util;
+package ru.kata.spring.boot_security.demo.util;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
