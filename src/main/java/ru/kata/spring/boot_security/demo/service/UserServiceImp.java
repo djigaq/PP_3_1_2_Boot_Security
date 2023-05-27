@@ -32,7 +32,6 @@ public class UserServiceImp implements UserService {
 
     @Override
     public void saveUsers(User user) {
-        user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
         userRepositories.save(user);
     }
 
@@ -60,10 +59,10 @@ public class UserServiceImp implements UserService {
     }
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = getUserByName(username);
+    public UserDetails loadUserByUsername(String name) throws UsernameNotFoundException {
+        User user = getUserByName(name);
         if (user == null) {
-            throw new UsernameNotFoundException(String.format("User '%s' not found", username));
+            throw new UsernameNotFoundException(String.format("User '%s' not found", name));
         }
 
         return new org.springframework.security.core.userdetails.User(user.getName(), user.getPassword(), mapRolesToAuthorities(user.getRoles()));
